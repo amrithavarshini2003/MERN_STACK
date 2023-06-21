@@ -1,0 +1,1231 @@
+//Join in hospital managament system
+CREATE TABLE hospital (
+  H_id INTEGER PRIMARY KEY,
+  H_name varchar(20),
+  H_city varchar(20)
+);
+INSERT INTO hospital VALUES (1, 'GGV','Mumbai');
+INSERT INTO hospital VALUES (2, 'DEV','Delhi');
+INSERT INTO hospital VALUES (3, 'MDK','Chennai');
+INSERT INTO hospital VALUES (4, 'SHF','Salem');
+#select * from hospital
+
+CREATE TABLE patient (
+  H_id INTEGER PRIMARY KEY,
+  H_name varchar(20),
+  H_city varchar(20)
+);
+INSERT INTO patient VALUES (1, 'Sadik','Mumbai');
+INSERT INTO patient VALUES (2, 'Randeep','Delhi');
+#select * from patient
+
+CREATE TABLE medicalrecord (
+  record_id INTEGER PRIMARY KEY,
+  Date_of_info INTEGER,
+  problem varchar(20)
+);
+INSERT INTO medicalrecord VALUES (1, '20-4-2023','Appendix');
+INSERT INTO medicalrecord VALUES (2, '26-3-2023','Kidney Stone');
+#select * from medicalrecord
+
+CREATE TABLE Doctor (
+  doc_id INTEGER PRIMARY KEY,
+  doc_name varchar(20),
+  salary INTEGER,
+  qualification varchar(20)
+);
+INSERT INTO Doctor VALUES (1, 'Hardik','100000','Cardiac Surgeon');
+INSERT INTO Doctor VALUES (2, 'Shradha','75000','Neurosurgeon');
+INSERT INTO Doctor VALUES (3, 'Madhu','85000','Urologist');
+INSERT INTO Doctor VALUES (4, 'Raval','95000','Ayush doctor');
+#select * from Doctor
+
+#INNER JOIN EXAMPLE
+SELECT h.H_id,h.H_name,d.doc_name,d.qualification
+FROM hospital h
+INNER JOIN Doctor d
+ON h.H_id = d.doc_id;
+
+#LEFT JOIN EXAMPLE
+SELECT h.H_id,h.H_name,h.H_city,d.doc_name,d.qualification
+FROM hospital h
+LEFT OUTER JOIN Doctor d
+ON h.H_id = d.doc_id;
+
+#RIGHT JOIN EXAMPLE
+SELECT d.doc_id,h.H_name,d.doc_name,d.salary,d.qualification
+FROM hospital h
+RIGHT JOIN Doctor d
+ON h.H_id = d.doc_id;
+
+#FULL JOIN EXAMPLE
+SELECT h.H_id,h.H_name,h.H_city,d.doc_name,d.qualification,d.doc_name,d.salary,d.qualification
+FROM hospital h
+FULL JOIN Doctor d
+ON h.H_id = d.doc_id;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//mangodb collection:collection1 Database:new
+use new
+switched to db new
+db.collection1.insertOne({name:"Abi",age:20});
+{
+  acknowledged: true,
+  insertedId: ObjectId("649177df9c1f00d7279ef9de")
+}
+db.collection1.find();
+{
+  _id: ObjectId("649177df9c1f00d7279ef9de"),
+  name: 'Abi',
+  age: 20
+}
+db.collection1.insertMany([{name:"Malathy",age:20},{name:"Darshan Raval",age:30},{name:"Vishwa",age:24}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6491785f9c1f00d7279ef9df"),
+    '1': ObjectId("6491785f9c1f00d7279ef9e0"),
+    '2': ObjectId("6491785f9c1f00d7279ef9e1")
+  }
+}
+db.collection1.find();
+{
+  _id: ObjectId("649177df9c1f00d7279ef9de"),
+  name: 'Abi',
+  age: 20
+}
+{
+  _id: ObjectId("6491785f9c1f00d7279ef9df"),
+  name: 'Malathy',
+  age: 20
+}
+{
+  _id: ObjectId("6491785f9c1f00d7279ef9e0"),
+  name: 'Darshan Raval',
+  age: 30
+}
+{
+  _id: ObjectId("6491785f9c1f00d7279ef9e1"),
+  name: 'Vishwa',
+  age: 24
+}
+db.collection1.updateOne({name:"Malathy"},{$set:{age:35}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.collection1.deleteOne({name:"Malathy"});
+db.collection1.find();
+{
+  _id: ObjectId("649177df9c1f00d7279ef9de"),
+  name: 'Abi',
+  age: 20
+}
+{
+  _id: ObjectId("6491785f9c1f00d7279ef9e0"),
+  name: 'Darshan Raval',
+  age: 30
+}
+{
+  _id: ObjectId("6491785f9c1f00d7279ef9e1"),
+  name: 'Vishwa',
+  age: 24
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//mangodb collection:collection2 Database:database2
+db.collection2.insertMany([{Name:"Swift",Model:"DTS",Rented_user_count:1,Mileage:18,Transmission:"automatic",Rent:1300,Fuel:"petrol",Img_url:"https://wallpapercave.com/wp/tYllGW0.jpg"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64917c5d9c1f00d7279ef9e4")
+  }
+}
+db.collection2.insertMany([{Name:"Maruthi",Model:"GTD",Rented_user_count:2,Mileage:19,Transmission:"automatic",Rent:1900,Fuel:"petrol",Img_url:"https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64917d189c1f00d7279ef9e5")
+  }
+}
+db.collection2.insertMany([{Name:"BMW",Model:"HVT",Rented_user_count:3,Mileage:20,Transmission:"manual",Rent:1000,Fuel:"diesel",Img_url:"https://wallpapercave.com/wp/tYllGW0.jpghttps://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64917f0b9c1f00d7279ef9e6")
+  }
+}
+db.cl.insertOne({Name:"Ford",Model:"htp",Rented_user_count:3,Milege:19,Transmission:"automatic",Rent:"1200",Fuel:"diesel",Image_url:"http://fdfdfd.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("649180939c1f00d7279ef9e8")
+}
+db.cl.insertOne({Name:"rolls royce",Model:"pph",Rented_user_count:4,Milege:30,Transmission:"automatic",Rent:"10000",Fuel:"diesel",Image_url:"http://rrsrs.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("649180a89c1f00d7279ef9e9")
+}
+db.cl.insertOne({Name:"audi",Model:"tth",Rented_user_count:5,Milege:10,Transmission:"automatic",Rent:"1000",Fuel:"diesel",Image_url:"http://adadsa.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("649180b79c1f00d7279ef9ea")
+}
+db.collection2.find();
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Name: 'Swift',
+  Model: 'DTS',
+  Rented_user_count: 1,
+  Mileage: 18,
+  Transmission: 'automatic',
+  Rent: 1300,
+  Fuel: 'petrol',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpg'
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Name: 'Maruthi',
+  Model: 'GTD',
+  Rented_user_count: 2,
+  Mileage: 19,
+  Transmission: 'automatic',
+  Rent: 1900,
+  Fuel: 'petrol',
+  Img_url: 'https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg'
+}
+{
+  _id: ObjectId("64917f0b9c1f00d7279ef9e6"),
+  Name: 'BMW',
+  Model: 'HVT',
+  Rented_user_count: 3,
+  Mileage: 20,
+  Transmission: 'manual',
+  Rent: 1000,
+  Fuel: 'diesel',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpghttps://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg'
+}
+{
+  _id: ObjectId("6491808d9c1f00d7279ef9e7"),
+  Name: 'Santro',
+  Model: 'GVV',
+  Rented_user_count: 4,
+  Mileage: 30,
+  Transmission: 'manual',
+  Rent: 1500,
+  Fuel: 'diesel',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpghttps://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg'
+}
+db.collection2.updateOne({name="Santro"},{$set:{Img_url:"https://autos.maxabout.com/cars/hyundai/santro/santro-era-petrol"}});
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.collection2.updateOne({Name="Santro"},{$set:{Img_url:"https://autos.maxabout.com/cars/hyundai/santro/santro-era-petrol"}});
+Error: clone(t={}){const r=t.loc||{};return e({loc:new Position("line"in r?r.line:this.loc.line,"column"in r?r.column:...<omitted>...)} could not be cloned.
+db.collection2.deleteOne({Name:"Santro"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.collection2.deleteOne({Name:"BMW"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.cl.insertOne({Name:"Ford",Model:"htp",Rented_user_count:3,Milege:19,Transmission:"automatic",Rent:"1200",Fuel:"diesel",Image_url:"http://fdfdfd.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925757c3e04707b1fdf657")
+}
+db.collection2.insertOne({Name:"rolls royce",Model:"pph",Rented_user_count:4,Milege:30,Transmission:"automatic",Rent:"10000",Fuel:"diesel",Image_url:"http://rrsrs.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925781c3e04707b1fdf658")
+}
+db.collection2.insertOne({Name:"Ford",Model:"htp",Rented_user_count:3,Milege:19,Transmission:"automatic",Rent:"1200",Fuel:"diesel",Image_url:"http://fdfdfd.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("6492579dc3e04707b1fdf659")
+}
+db.collection2.find();
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Name: 'Swift',
+  Model: 'DTS',
+  Rented_user_count: 1,
+  Mileage: 18,
+  Transmission: 'automatic',
+  Rent: 1300,
+  Fuel: 'petrol',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpg'
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Name: 'Maruthi',
+  Model: 'GTD',
+  Rented_user_count: 2,
+  Mileage: 19,
+  Transmission: 'automatic',
+  Rent: 1900,
+  Fuel: 'petrol',
+  Img_url: 'https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg'
+}
+{
+  _id: ObjectId("64925781c3e04707b1fdf658"),
+  Name: 'rolls royce',
+  Model: 'pph',
+  Rented_user_count: 4,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '10000',
+  Fuel: 'diesel',
+  Image_url: 'http://rrsrs.com'
+}
+{
+  _id: ObjectId("6492579dc3e04707b1fdf659"),
+  Name: 'Ford',
+  Model: 'htp',
+  Rented_user_count: 3,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '1200',
+  Fuel: 'diesel',
+  Image_url: 'http://fdfdfd.com'
+}
+db.collection2.insertOne({Name:"audi",Model:"tth",Rented_user_count:5,Milege:10,Transmission:"automatic",Rent:"1000",Fuel:"diesel",Image_url:"http://adadsa.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("649257d2c3e04707b1fdf65a")
+}
+db.collection2.insertOne({Name:"santro",Model:"rty",Rented_user_count:3,Milege:40,Transmission:"automatic",Rent:"3000",Fuel:"gas",Image_url:"http://ststro.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("6492581fc3e04707b1fdf65b")
+}
+db.collection2.insertOne({Name:"Honda",Model:"2",Rented_user_count:2,Milege:20,Transmission:"Manual",Rent:"5000",Fuel:"petrol",Image_url:"http://hohohod.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("6492582fc3e04707b1fdf65c")
+}
+db.collection2.insertMany([{Name:"BMW",Model:"HVT",Rented_user_count:3,Mileage:20,Transmission:"manual",Rent:1000,Fuel:"diesel",Img_url:"https://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("649258bdc3e04707b1fdf65d")
+  }
+}
+db.collection2.find();
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Name: 'Swift',
+  Model: 'DTS',
+  Rented_user_count: 1,
+  Mileage: 18,
+  Transmission: 'automatic',
+  Rent: 1300,
+  Fuel: 'petrol',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpg'
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Name: 'Maruthi',
+  Model: 'GTD',
+  Rented_user_count: 2,
+  Mileage: 19,
+  Transmission: 'automatic',
+  Rent: 1900,
+  Fuel: 'petrol',
+  Img_url: 'https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg'
+}
+{
+  _id: ObjectId("64925781c3e04707b1fdf658"),
+  Name: 'rolls royce',
+  Model: 'pph',
+  Rented_user_count: 4,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '10000',
+  Fuel: 'diesel',
+  Image_url: 'http://rrsrs.com'
+}
+{
+  _id: ObjectId("6492579dc3e04707b1fdf659"),
+  Name: 'Ford',
+  Model: 'htp',
+  Rented_user_count: 3,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '1200',
+  Fuel: 'diesel',
+  Image_url: 'http://fdfdfd.com'
+}
+{
+  _id: ObjectId("649257d2c3e04707b1fdf65a"),
+  Name: 'audi',
+  Model: 'tth',
+  Rented_user_count: 5,
+  Milege: 10,
+  Transmission: 'automatic',
+  Rent: '1000',
+  Fuel: 'diesel',
+  Image_url: 'http://adadsa.com'
+}
+{
+  _id: ObjectId("6492581fc3e04707b1fdf65b"),
+  Name: 'santro',
+  Model: 'rty',
+  Rented_user_count: 3,
+  Milege: 40,
+  Transmission: 'automatic',
+  Rent: '3000',
+  Fuel: 'gas',
+  Image_url: 'http://ststro.com'
+}
+{
+  _id: ObjectId("6492582fc3e04707b1fdf65c"),
+  Name: 'Honda',
+  Model: '2',
+  Rented_user_count: 2,
+  Milege: 20,
+  Transmission: 'Manual',
+  Rent: '5000',
+  Fuel: 'petrol',
+  Image_url: 'http://hohohod.com'
+}
+{
+  _id: ObjectId("649258bdc3e04707b1fdf65d"),
+  Name: 'BMW',
+  Model: 'HVT',
+  Rented_user_count: 3,
+  Mileage: 20,
+  Transmission: 'manual',
+  Rent: 1000,
+  Fuel: 'diesel',
+  Img_url: 'https://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg'
+}
+db.collection2.insertOne({Name:"Lamborghini Diablo",Model:"HCR",Rented_user_count:7,Milege:16,Transmission:"automatic",Rent:"50000",Fuel:"diesel",Image_url:"http://lamborghini.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("6492595fc3e04707b1fdf65e")
+}
+db.collection2.insertOne({Name:"Herbie",Model:"XKG",Rented_user_count:4,Milege:21,Transmission:"manual",Rent:"40000",Fuel:"diesel",Image_url:"http://herbie.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("649259d6c3e04707b1fdf65f")
+}
+db.collection2.insertOne({Name:"Alfa Romeo",Model:"NDT",Rented_user_count:2,Milege:23,Transmission:"automatic",Rent:"35000",Fuel:"diesel",Image_url:"http://herbie.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925a32c3e04707b1fdf660")
+}
+db.collection2.insertOne({Name:"Royal Enfield",Model:"CHF",Rented_user_count:1,Milege:25,Transmission:"manual",Rent:"40000",Fuel:"petrol",Image_url:"http://royal.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925ad6c3e04707b1fdf661")
+}
+db.collection2.insertOne({Name:"KTM",Model:"HDLJ",Rented_user_count:5,Milege:19,Transmission:"automatic",Rent:"38000",Fuel:"petrol",Image_url:"http://ktm.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925b29c3e04707b1fdf662")
+}
+db.collection2.insertOne({Name:"Harley-davidson",Model:"JFF",Rented_user_count:8,Milege:30,Transmission:"manual",Rent:"33000",Fuel:"petrol",Image_url:"http://ktm.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925b73c3e04707b1fdf663")
+}
+db.collection2.insertOne({Name:"Ducati",Model:"JDHGH",Rented_user_count:32,Milege:35,Transmission:"automatic",Rent:"50000",Fuel:"petrol",Image_url:"http://ducati.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925bcbc3e04707b1fdf664")
+}
+db.collection2.insertOne({Name:"Hercules",Model:"AGH",Rented_user_count:20,Milege:30,Transmission:"manual",Rent:"45000",Fuel:"petrol",Image_url:"http://hercules.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925c1dc3e04707b1fdf665")
+}
+db.collection2.insertOne({Name:"Zeus",Model:"JJDH",Rented_user_count:30,Milege:30,Transmission:"automatic",Rent:"55000",Fuel:"petrol",Image_url:"http://zeus.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925c5ec3e04707b1fdf666")
+}
+db.collection2.insertOne({Name:"Phoenix",Model:"GDB",Rented_user_count:25,Milege:25,Transmission:"manual",Rent:"53000",Fuel:"petrol",Image_url:"http://phoenix.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925ccec3e04707b1fdf667")
+}
+db.collection2.insertOne({Name:"Kermit",Model:"BRI",Rented_user_count:40,Milege:25,Transmission:"automatic",Rent:"53000",Fuel:"petrol",Image_url:"http://kermit.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925d07c3e04707b1fdf668")
+}
+db.collection2.insertOne({Name:"Silver Stallion",Model:"DKGVF",Rented_user_count:5,Milege:35,Transmission:"manual",Rent:"60000",Fuel:"petrol",Image_url:"http://Silverey.com"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64925d7cc3e04707b1fdf669")
+}
+db.collection2.updateOne({name:"Harley-davidson"},{$set:{Image_url:"http://harley.com"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.collection2.updateOne({name:"Alfa Romeo"},{$set:{Image_url:"http://alfaromeo.com"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.collection2.find();
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Name: 'Swift',
+  Model: 'DTS',
+  Rented_user_count: 1,
+  Mileage: 18,
+  Transmission: 'automatic',
+  Rent: 1300,
+  Fuel: 'petrol',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpg'
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Name: 'Maruthi',
+  Model: 'GTD',
+  Rented_user_count: 2,
+  Mileage: 19,
+  Transmission: 'automatic',
+  Rent: 1900,
+  Fuel: 'petrol',
+  Img_url: 'https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg'
+}
+{
+  _id: ObjectId("64925781c3e04707b1fdf658"),
+  Name: 'rolls royce',
+  Model: 'pph',
+  Rented_user_count: 4,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '10000',
+  Fuel: 'diesel',
+  Image_url: 'http://rrsrs.com'
+}
+{
+  _id: ObjectId("6492579dc3e04707b1fdf659"),
+  Name: 'Ford',
+  Model: 'htp',
+  Rented_user_count: 3,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '1200',
+  Fuel: 'diesel',
+  Image_url: 'http://fdfdfd.com'
+}
+{
+  _id: ObjectId("649257d2c3e04707b1fdf65a"),
+  Name: 'audi',
+  Model: 'tth',
+  Rented_user_count: 5,
+  Milege: 10,
+  Transmission: 'automatic',
+  Rent: '1000',
+  Fuel: 'diesel',
+  Image_url: 'http://adadsa.com'
+}
+{
+  _id: ObjectId("6492581fc3e04707b1fdf65b"),
+  Name: 'santro',
+  Model: 'rty',
+  Rented_user_count: 3,
+  Milege: 40,
+  Transmission: 'automatic',
+  Rent: '3000',
+  Fuel: 'gas',
+  Image_url: 'http://ststro.com'
+}
+{
+  _id: ObjectId("6492582fc3e04707b1fdf65c"),
+  Name: 'Honda',
+  Model: '2',
+  Rented_user_count: 2,
+  Milege: 20,
+  Transmission: 'Manual',
+  Rent: '5000',
+  Fuel: 'petrol',
+  Image_url: 'http://hohohod.com'
+}
+{
+  _id: ObjectId("649258bdc3e04707b1fdf65d"),
+  Name: 'BMW',
+  Model: 'HVT',
+  Rented_user_count: 3,
+  Mileage: 20,
+  Transmission: 'manual',
+  Rent: 1000,
+  Fuel: 'diesel',
+  Img_url: 'https://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg'
+}
+{
+  _id: ObjectId("6492595fc3e04707b1fdf65e"),
+  Name: 'Lamborghini Diablo',
+  Model: 'HCR',
+  Rented_user_count: 7,
+  Milege: 16,
+  Transmission: 'automatic',
+  Rent: '50000',
+  Fuel: 'diesel',
+  Image_url: 'http://lamborghini.com'
+}
+{
+  _id: ObjectId("649259d6c3e04707b1fdf65f"),
+  Name: 'Herbie',
+  Model: 'XKG',
+  Rented_user_count: 4,
+  Milege: 21,
+  Transmission: 'manual',
+  Rent: '40000',
+  Fuel: 'diesel',
+  Image_url: 'http://herbie.com'
+}
+{
+  _id: ObjectId("64925a32c3e04707b1fdf660"),
+  Name: 'Alfa Romeo',
+  Model: 'NDT',
+  Rented_user_count: 2,
+  Milege: 23,
+  Transmission: 'automatic',
+  Rent: '35000',
+  Fuel: 'diesel',
+  Image_url: 'http://herbie.com'
+}
+{
+  _id: ObjectId("64925ad6c3e04707b1fdf661"),
+  Name: 'Royal Enfield',
+  Model: 'CHF',
+  Rented_user_count: 1,
+  Milege: 25,
+  Transmission: 'manual',
+  Rent: '40000',
+  Fuel: 'petrol',
+  Image_url: 'http://royal.com'
+}
+{
+  _id: ObjectId("64925b29c3e04707b1fdf662"),
+  Name: 'KTM',
+  Model: 'HDLJ',
+  Rented_user_count: 5,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '38000',
+  Fuel: 'petrol',
+  Image_url: 'http://ktm.com'
+}
+{
+  _id: ObjectId("64925b73c3e04707b1fdf663"),
+  Name: 'Harley-davidson',
+  Model: 'JFF',
+  Rented_user_count: 8,
+  Milege: 30,
+  Transmission: 'manual',
+  Rent: '33000',
+  Fuel: 'petrol',
+  Image_url: 'http://ktm.com'
+}
+{
+  _id: ObjectId("64925bcbc3e04707b1fdf664"),
+  Name: 'Ducati',
+  Model: 'JDHGH',
+  Rented_user_count: 32,
+  Milege: 35,
+  Transmission: 'automatic',
+  Rent: '50000',
+  Fuel: 'petrol',
+  Image_url: 'http://ducati.com'
+}
+{
+  _id: ObjectId("64925c1dc3e04707b1fdf665"),
+  Name: 'Hercules',
+  Model: 'AGH',
+  Rented_user_count: 20,
+  Milege: 30,
+  Transmission: 'manual',
+  Rent: '45000',
+  Fuel: 'petrol',
+  Image_url: 'http://hercules.com'
+}
+{
+  _id: ObjectId("64925c5ec3e04707b1fdf666"),
+  Name: 'Zeus',
+  Model: 'JJDH',
+  Rented_user_count: 30,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '55000',
+  Fuel: 'petrol',
+  Image_url: 'http://zeus.com'
+}
+{
+  _id: ObjectId("64925ccec3e04707b1fdf667"),
+  Name: 'Phoenix',
+  Model: 'GDB',
+  Rented_user_count: 25,
+  Milege: 25,
+  Transmission: 'manual',
+  Rent: '53000',
+  Fuel: 'petrol',
+  Image_url: 'http://phoenix.com'
+}
+{
+  _id: ObjectId("64925d07c3e04707b1fdf668"),
+  Name: 'Kermit',
+  Model: 'BRI',
+  Rented_user_count: 40,
+  Milege: 25,
+  Transmission: 'automatic',
+  Rent: '53000',
+  Fuel: 'petrol',
+  Image_url: 'http://kermit.com'
+}
+{
+  _id: ObjectId("64925d7cc3e04707b1fdf669"),
+  Name: 'Silver Stallion',
+  Model: 'DKGVF',
+  Rented_user_count: 5,
+  Milege: 35,
+  Transmission: 'manual',
+  Rent: '60000',
+  Fuel: 'petrol',
+  Image_url: 'http://Silverey.com'
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+//TO FILTER THE DATA FORM PARTICULAR FIELD
+UNDER database2.collection2
+TYPE  {Fuel:"diesel"}
+---------------------------------------------------------------------------------------------------------------------------------------------
+//TO FITLER AND SORT THE DATA IN COMMAND PROMPT
+db.collection2.find().sort({Rent:-1});
+{
+  _id: ObjectId("64925d7cc3e04707b1fdf669"),
+  Name: 'Silver Stallion',
+  Model: 'DKGVF',
+  Rented_user_count: 5,
+  Milege: 35,
+  Transmission: 'manual',
+  Rent: '60000',
+  Fuel: 'petrol',
+  Image_url: 'http://Silverey.com'
+}
+{
+  _id: ObjectId("64925c5ec3e04707b1fdf666"),
+  Name: 'Zeus',
+  Model: 'JJDH',
+  Rented_user_count: 30,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '55000',
+  Fuel: 'petrol',
+  Image_url: 'http://zeus.com'
+}
+{
+  _id: ObjectId("64925ccec3e04707b1fdf667"),
+  Name: 'Phoenix',
+  Model: 'GDB',
+  Rented_user_count: 25,
+  Milege: 25,
+  Transmission: 'manual',
+  Rent: '53000',
+  Fuel: 'petrol',
+  Image_url: 'http://phoenix.com'
+}
+{
+  _id: ObjectId("64925d07c3e04707b1fdf668"),
+  Name: 'Kermit',
+  Model: 'BRI',
+  Rented_user_count: 40,
+  Milege: 25,
+  Transmission: 'automatic',
+  Rent: '53000',
+  Fuel: 'petrol',
+  Image_url: 'http://kermit.com'
+}
+{
+  _id: ObjectId("6492595fc3e04707b1fdf65e"),
+  Name: 'Lamborghini Diablo',
+  Model: 'HCR',
+  Rented_user_count: 7,
+  Milege: 16,
+  Transmission: 'automatic',
+  Rent: '50000',
+  Fuel: 'diesel',
+  Image_url: 'http://lamborghini.com'
+}
+{
+  _id: ObjectId("64925bcbc3e04707b1fdf664"),
+  Name: 'Ducati',
+  Model: 'JDHGH',
+  Rented_user_count: 32,
+  Milege: 35,
+  Transmission: 'automatic',
+  Rent: '50000',
+  Fuel: 'petrol',
+  Image_url: 'http://ducati.com'
+}
+{
+  _id: ObjectId("6492582fc3e04707b1fdf65c"),
+  Name: 'Honda',
+  Model: '2',
+  Rented_user_count: 2,
+  Milege: 20,
+  Transmission: 'Manual',
+  Rent: '5000',
+  Fuel: 'petrol',
+  Image_url: 'http://hohohod.com'
+}
+{
+  _id: ObjectId("64925c1dc3e04707b1fdf665"),
+  Name: 'Hercules',
+  Model: 'AGH',
+  Rented_user_count: 20,
+  Milege: 30,
+  Transmission: 'manual',
+  Rent: '45000',
+  Fuel: 'petrol',
+  Image_url: 'http://hercules.com'
+}
+{
+  _id: ObjectId("649259d6c3e04707b1fdf65f"),
+  Name: 'Herbie',
+  Model: 'XKG',
+  Rented_user_count: 4,
+  Milege: 21,
+  Transmission: 'manual',
+  Rent: '40000',
+  Fuel: 'diesel',
+  Image_url: 'http://herbie.com'
+}
+{
+  _id: ObjectId("64925ad6c3e04707b1fdf661"),
+  Name: 'Royal Enfield',
+  Model: 'CHF',
+  Rented_user_count: 1,
+  Milege: 25,
+  Transmission: 'manual',
+  Rent: '40000',
+  Fuel: 'petrol',
+  Image_url: 'http://royal.com'
+}
+{
+  _id: ObjectId("64925b29c3e04707b1fdf662"),
+  Name: 'KTM',
+  Model: 'HDLJ',
+  Rented_user_count: 5,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '38000',
+  Fuel: 'petrol',
+  Image_url: 'http://ktm.com'
+}
+{
+  _id: ObjectId("64925a32c3e04707b1fdf660"),
+  Name: 'Alfa Romeo',
+  Model: 'NDT',
+  Rented_user_count: 2,
+  Milege: 23,
+  Transmission: 'automatic',
+  Rent: '35000',
+  Fuel: 'diesel',
+  Image_url: 'http://herbie.com'
+}
+{
+  _id: ObjectId("64925b73c3e04707b1fdf663"),
+  Name: 'Harley-davidson',
+  Model: 'JFF',
+  Rented_user_count: 8,
+  Milege: 30,
+  Transmission: 'manual',
+  Rent: '33000',
+  Fuel: 'petrol',
+  Image_url: 'http://ktm.com'
+}
+{
+  _id: ObjectId("6492581fc3e04707b1fdf65b"),
+  Name: 'santro',
+  Model: 'rty',
+  Rented_user_count: 3,
+  Milege: 40,
+  Transmission: 'automatic',
+  Rent: '3000',
+  Fuel: 'gas',
+  Image_url: 'http://ststro.com'
+}
+{
+  _id: ObjectId("6492579dc3e04707b1fdf659"),
+  Name: 'Ford',
+  Model: 'htp',
+  Rented_user_count: 3,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '1200',
+  Fuel: 'diesel',
+  Image_url: 'http://fdfdfd.com'
+}
+{
+  _id: ObjectId("64925781c3e04707b1fdf658"),
+  Name: 'rolls royce',
+  Model: 'pph',
+  Rented_user_count: 4,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '10000',
+  Fuel: 'diesel',
+  Image_url: 'http://rrsrs.com'
+}
+{
+  _id: ObjectId("649257d2c3e04707b1fdf65a"),
+  Name: 'audi',
+  Model: 'tth',
+  Rented_user_count: 5,
+  Milege: 10,
+  Transmission: 'automatic',
+  Rent: '1000',
+  Fuel: 'diesel',
+  Image_url: 'http://adadsa.com'
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Name: 'Maruthi',
+  Model: 'GTD',
+  Rented_user_count: 2,
+  Mileage: 19,
+  Transmission: 'automatic',
+  Rent: 1900,
+  Fuel: 'petrol',
+  Img_url: 'https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg'
+}
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Name: 'Swift',
+  Model: 'DTS',
+  Rented_user_count: 1,
+  Mileage: 18,
+  Transmission: 'automatic',
+  Rent: 1300,
+  Fuel: 'petrol',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpg'
+}
+{
+  _id: ObjectId("649258bdc3e04707b1fdf65d"),
+  Name: 'BMW',
+  Model: 'HVT',
+  Rented_user_count: 3,
+  Mileage: 20,
+  Transmission: 'manual',
+  Rent: 1000,
+  Fuel: 'diesel',
+  Img_url: 'https://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg'
+}
+Type "it" for more
+db.collection2.find().sort({Rent:1});
+{
+  _id: ObjectId("649258bdc3e04707b1fdf65d"),
+  Name: 'BMW',
+  Model: 'HVT',
+  Rented_user_count: 3,
+  Mileage: 20,
+  Transmission: 'manual',
+  Rent: 1000,
+  Fuel: 'diesel',
+  Img_url: 'https://www.espinotireandwheel.com/Portals/16/DNNGo_PhotoAlbums/6980/0/bmw_1.jpg'
+}
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Name: 'Swift',
+  Model: 'DTS',
+  Rented_user_count: 1,
+  Mileage: 18,
+  Transmission: 'automatic',
+  Rent: 1300,
+  Fuel: 'petrol',
+  Img_url: 'https://wallpapercave.com/wp/tYllGW0.jpg'
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Name: 'Maruthi',
+  Model: 'GTD',
+  Rented_user_count: 2,
+  Mileage: 19,
+  Transmission: 'automatic',
+  Rent: 1900,
+  Fuel: 'petrol',
+  Img_url: 'https://www.carblogindia.com/wp-content/uploads/2019/11/Maruti-Suzuki-Baleno.jpg'
+}
+{
+  _id: ObjectId("649257d2c3e04707b1fdf65a"),
+  Name: 'audi',
+  Model: 'tth',
+  Rented_user_count: 5,
+  Milege: 10,
+  Transmission: 'automatic',
+  Rent: '1000',
+  Fuel: 'diesel',
+  Image_url: 'http://adadsa.com'
+}
+{
+  _id: ObjectId("64925781c3e04707b1fdf658"),
+  Name: 'rolls royce',
+  Model: 'pph',
+  Rented_user_count: 4,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '10000',
+  Fuel: 'diesel',
+  Image_url: 'http://rrsrs.com'
+}
+{
+  _id: ObjectId("6492579dc3e04707b1fdf659"),
+  Name: 'Ford',
+  Model: 'htp',
+  Rented_user_count: 3,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '1200',
+  Fuel: 'diesel',
+  Image_url: 'http://fdfdfd.com'
+}
+{
+  _id: ObjectId("6492581fc3e04707b1fdf65b"),
+  Name: 'santro',
+  Model: 'rty',
+  Rented_user_count: 3,
+  Milege: 40,
+  Transmission: 'automatic',
+  Rent: '3000',
+  Fuel: 'gas',
+  Image_url: 'http://ststro.com'
+}
+{
+  _id: ObjectId("64925b73c3e04707b1fdf663"),
+  Name: 'Harley-davidson',
+  Model: 'JFF',
+  Rented_user_count: 8,
+  Milege: 30,
+  Transmission: 'manual',
+  Rent: '33000',
+  Fuel: 'petrol',
+  Image_url: 'http://ktm.com'
+}
+{
+  _id: ObjectId("64925a32c3e04707b1fdf660"),
+  Name: 'Alfa Romeo',
+  Model: 'NDT',
+  Rented_user_count: 2,
+  Milege: 23,
+  Transmission: 'automatic',
+  Rent: '35000',
+  Fuel: 'diesel',
+  Image_url: 'http://herbie.com'
+}
+{
+  _id: ObjectId("64925b29c3e04707b1fdf662"),
+  Name: 'KTM',
+  Model: 'HDLJ',
+  Rented_user_count: 5,
+  Milege: 19,
+  Transmission: 'automatic',
+  Rent: '38000',
+  Fuel: 'petrol',
+  Image_url: 'http://ktm.com'
+}
+{
+  _id: ObjectId("649259d6c3e04707b1fdf65f"),
+  Name: 'Herbie',
+  Model: 'XKG',
+  Rented_user_count: 4,
+  Milege: 21,
+  Transmission: 'manual',
+  Rent: '40000',
+  Fuel: 'diesel',
+  Image_url: 'http://herbie.com'
+}
+{
+  _id: ObjectId("64925ad6c3e04707b1fdf661"),
+  Name: 'Royal Enfield',
+  Model: 'CHF',
+  Rented_user_count: 1,
+  Milege: 25,
+  Transmission: 'manual',
+  Rent: '40000',
+  Fuel: 'petrol',
+  Image_url: 'http://royal.com'
+}
+{
+  _id: ObjectId("64925c1dc3e04707b1fdf665"),
+  Name: 'Hercules',
+  Model: 'AGH',
+  Rented_user_count: 20,
+  Milege: 30,
+  Transmission: 'manual',
+  Rent: '45000',
+  Fuel: 'petrol',
+  Image_url: 'http://hercules.com'
+}
+{
+  _id: ObjectId("6492582fc3e04707b1fdf65c"),
+  Name: 'Honda',
+  Model: '2',
+  Rented_user_count: 2,
+  Milege: 20,
+  Transmission: 'Manual',
+  Rent: '5000',
+  Fuel: 'petrol',
+  Image_url: 'http://hohohod.com'
+}
+{
+  _id: ObjectId("6492595fc3e04707b1fdf65e"),
+  Name: 'Lamborghini Diablo',
+  Model: 'HCR',
+  Rented_user_count: 7,
+  Milege: 16,
+  Transmission: 'automatic',
+  Rent: '50000',
+  Fuel: 'diesel',
+  Image_url: 'http://lamborghini.com'
+}
+{
+  _id: ObjectId("64925bcbc3e04707b1fdf664"),
+  Name: 'Ducati',
+  Model: 'JDHGH',
+  Rented_user_count: 32,
+  Milege: 35,
+  Transmission: 'automatic',
+  Rent: '50000',
+  Fuel: 'petrol',
+  Image_url: 'http://ducati.com'
+}
+{
+  _id: ObjectId("64925ccec3e04707b1fdf667"),
+  Name: 'Phoenix',
+  Model: 'GDB',
+  Rented_user_count: 25,
+  Milege: 25,
+  Transmission: 'manual',
+  Rent: '53000',
+  Fuel: 'petrol',
+  Image_url: 'http://phoenix.com'
+}
+{
+  _id: ObjectId("64925d07c3e04707b1fdf668"),
+  Name: 'Kermit',
+  Model: 'BRI',
+  Rented_user_count: 40,
+  Milege: 25,
+  Transmission: 'automatic',
+  Rent: '53000',
+  Fuel: 'petrol',
+  Image_url: 'http://kermit.com'
+}
+{
+  _id: ObjectId("64925c5ec3e04707b1fdf666"),
+  Name: 'Zeus',
+  Model: 'JJDH',
+  Rented_user_count: 30,
+  Milege: 30,
+  Transmission: 'automatic',
+  Rent: '55000',
+  Fuel: 'petrol',
+  Image_url: 'http://zeus.com'
+}
+{
+  _id: ObjectId("64925d7cc3e04707b1fdf669"),
+  Name: 'Silver Stallion',
+  Model: 'DKGVF',
+  Rented_user_count: 5,
+  Milege: 35,
+  Transmission: 'manual',
+  Rent: '60000',
+  Fuel: 'petrol',
+  Image_url: 'http://Silverey.com'
+}
+Type "it" for more
+db.collection2.find({},{"Rent":30000}).sort({Rent:1});
+{
+  _id: ObjectId("649258bdc3e04707b1fdf65d"),
+  Rent: 1000
+}
+{
+  _id: ObjectId("64917c5d9c1f00d7279ef9e4"),
+  Rent: 1300
+}
+{
+  _id: ObjectId("64917d189c1f00d7279ef9e5"),
+  Rent: 1900
+}
+{
+  _id: ObjectId("649257d2c3e04707b1fdf65a"),
+  Rent: '1000'
+}
+{
+  _id: ObjectId("64925781c3e04707b1fdf658"),
+  Rent: '10000'
+}
+{
+  _id: ObjectId("6492579dc3e04707b1fdf659"),
+  Rent: '1200'
+}
+{
+  _id: ObjectId("6492581fc3e04707b1fdf65b"),
+  Rent: '3000'
+}
+{
+  _id: ObjectId("64925b73c3e04707b1fdf663"),
+  Rent: '33000'
+}
+{
+  _id: ObjectId("64925a32c3e04707b1fdf660"),
+  Rent: '35000'
+}
+{
+  _id: ObjectId("64925b29c3e04707b1fdf662"),
+  Rent: '38000'
+}
+{
+  _id: ObjectId("649259d6c3e04707b1fdf65f"),
+  Rent: '40000'
+}
+{
+  _id: ObjectId("64925ad6c3e04707b1fdf661"),
+  Rent: '40000'
+}
+{
+  _id: ObjectId("64925c1dc3e04707b1fdf665"),
+  Rent: '45000'
+}
+{
+  _id: ObjectId("6492582fc3e04707b1fdf65c"),
+  Rent: '5000'
+}
+{
+  _id: ObjectId("6492595fc3e04707b1fdf65e"),
+  Rent: '50000'
+}
+{
+  _id: ObjectId("64925bcbc3e04707b1fdf664"),
+  Rent: '50000'
+}
+{
+  _id: ObjectId("64925ccec3e04707b1fdf667"),
+  Rent: '53000'
+}
+{
+  _id: ObjectId("64925d07c3e04707b1fdf668"),
+  Rent: '53000'
+}
+{
+  _id: ObjectId("64925c5ec3e04707b1fdf666"),
+  Rent: '55000'
+}
+{
+  _id: ObjectId("64925d7cc3e04707b1fdf669"),
+  Rent: '60000'
+}
