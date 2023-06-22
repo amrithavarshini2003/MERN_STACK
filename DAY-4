@@ -1,0 +1,310 @@
+//PALINDROME
+function palindrome(str) {
+    let len = str.length;
+    let mid = Math.floor(len/2);
+    for ( let i = 0; i < mid; i++ ) {
+    if (str[i] !== str[len - 1 - i]) {
+    return "Not a Palindrome";
+    }
+    }
+    return "Palindrome";
+    }
+    console.log(palindrome(12321));
+    console.log(palindrome("momo"));
+
+let str1="malayalam";
+let str2=str1.split("");
+let str3=str2.reverse();
+let str4=str3.join('');
+if(str1===str4){
+    console.log("Palindrome");
+}
+else{ 
+console.log("Not a Palindrome");
+}
+
+//FOR IN LOOP
+
+let obj2={
+    a:1,
+    b:2,
+    c:3
+}
+let obj1=[1,2,3,4]
+for(let key in obj1){
+    console.log(key,obj1[key]);
+}
+for(let key in obj2){
+    console.log(key,obj2[key]);
+}
+
+//FOR OF LOOP
+
+let obj=[1,2,3,4]
+for(let key of obj){
+    console.log(key);
+}
+
+//ARRAY CALL BACK METHOD
+
+let names=["vijay","alan","harish","sakthi","santhosh"]
+let num=[1,2,3,4,5]
+names.forEach((ele)=>{
+    console.log(ele.repeat(5));
+})
+//FOR EACHs
+num.forEach(ele=> console.log(ele*ele))//forEach()
+
+//MAP
+/*let arr=names.map(ele=>console.log(ele.repeat(3)));
+vijayvijayvijay
+alanalanalan
+harishharishharish
+sakthisakthisakthi
+santhoshsanthoshsanthosh
+*/
+
+let arr=names.map(ele=>(ele.repeat(3)));
+console.log(arr);
+
+//ERROR
+/*num.forEach(ele=>
+    let var=5;
+     console.log(ele*ele)
+     );
+*/
+
+//FILTER
+let n=num.filter(ele=> {
+    return ele%2;  //odd values
+})
+console.log(n);
+
+let n1=num.filter(ele=> {
+    return !(ele%2);  //even values
+})
+console.log(n1);
+
+let n2=num.filter(ele=> {
+    return 100;  
+})
+console.log(n2);
+
+let arr=["A","B","C"];
+let ans1=arr.map(ele =>{
+    return ele.repeat(3);
+})
+console.log(arr);
+//TASK
+//where dob >=2003
+let names_obj=[
+    {
+        names:"mahesan",
+        dob:2002
+    },
+    {
+        names:"ajay",
+        dob:2003
+    },
+    {
+        names:"bala",
+        dob:2004
+    },
+    {
+        names:"surya",
+        dob:2004
+    }
+]
+let ans2=names_obj.map(ele =>{
+    if (ele.dob>=2003) return ele.names;
+})
+console.log(ans2);
+
+let  ans3 = names_obj.filter(ele => ele.dob>=2003).map(ele => ele.names);;
+console.log(ans3);
+
+//shallow copy
+const arr2=[1,2,3,4,5,6];
+const array1=arr2;
+arr2[2]=200;
+console.log(array1,arr2);
+
+//deep copy
+ const array=[1,2,3,4,5];
+ const array2=[...array];
+ array2[2]=200;
+ console.log(array2);
+
+ const obj_cp={
+    name:"sece",
+    year:"2023"
+ };
+ const objcp2=obj_cp;
+ obj_cp.year=2004;
+ console.log(obj_cp,objcp2);
+
+ //task
+ let emp=[
+    {
+        names:"mahesan",
+        age:29,
+        salary:20000,
+        pno:1234567890
+    },
+    {
+        names:"raval",
+        age:23,
+        salary:25000,
+        pno:1234563490
+    },
+    {
+        names:"bala",
+        age:25,
+        salary:30000,
+        pno:1236377890
+    },
+    {
+        names:"surya",
+        age:26,
+        salary:35000,
+        pno:9766377890
+    },
+    {
+        names:"ash",
+        age:28,
+        salary:21000,
+        pno:7446377890
+    },
+    {
+        names:"bandu",
+        age:28,
+        salary:23000,
+        pno:3576377890
+    },
+    {
+        names:"nimmi",
+        age:26,
+        salary:24000,
+        pno:9996377890
+    }
+]
+let  ans4 = emp.filter(ele => ele.salary>=25000).map(ele => {
+    return {name:ele.names,age:ele.age};
+});
+console.log(ans4);
+
+//De-structuring ---unpacking elements
+
+let arr_name=[10,20,30,40,50];
+let [a1,a2,a3,a4,a5]=arr_name;
+console.log(a1,a2,a3,a4,a5);
+
+let arr_name1=[10,20,30,40,50,60,70,80];
+let [aa1,aa2,aa3,aa4,aa5]=arr_name1;
+console.log(aa1,aa2,aa3,aa4,aa5);
+
+//rest operator
+let arr_name2=[10,20,30,40,50,60,70,80,90];
+let [aaa1,aaa2,aaa3,aaa4,...aaa5]=arr_name2;
+console.log(aaa1,aaa2,aaa3,aaa4,aaa5);
+
+//to print 10 20 40 50
+let arr_name3=[10,20,30,40,50,60,70,80];
+let [b1,b2,,b3,b4]=arr_name3;
+console.log(b1,b2,b3,b4);
+//task
+//10 20 (30 skip) 40 50 (5) [60, 70, 80, 90, 100]
+
+let arr_name4=[10,20,30,40,50,60,70,80,90,100];
+let [c1,c2,,c3,c4,...c5]=arr_name4;
+console.log(c1,c2,c3,c4,c5);
+
+//OBJECT DE_STRUCTURING
+let obj_1={
+    clg_name:"sece",
+    year:2024,
+    city:"cbe",
+    dept:"mech",
+    lpa:"50lpa",
+    colour:"blue"
+};
+// let{clg_name,year,city,...rest}=obj_1;
+// console.log(clg_name,year,city,rest);
+
+// let{clg_name:college,year,city,...remaining}=obj_1;//rename operator
+// console.log(college,year,city,remaining);
+
+let {clg_name:college,year,city,colour="green"}=obj_1;
+console.log(college,year,city,colour);
+    
+//To print a msg after 3 sec
+setTimeout(
+    () => console.log('You will not see this one!'),
+    3000
+  );
+//To print a msg every 3 sec
+  setInterval(
+    () => console.log('Hello every 3 seconds'),
+    3000
+  );
+
+//setTimeout will print at last
+ console.log('anand');
+  setTimeout(
+    ()=>console.log('ABC'),
+    0
+  );     
+  console.log('nandha');
+//promise
+  fetch('https://jsonplaceholder.typicode.com/posts/1')
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+
+  fetch('https://jsonplaceholder.typicode.com/posts')
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+
+  const promises=new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        reject('resolved')
+    },4000)
+  })
+
+  promises
+  .then((value)=>console.log(value))
+  .catch(()=>console.log('error'));
+
+//Api call illustrature
+  const promises1=new Promise((resolve,reject)=>{
+  })
+  promises1
+  .then((value)=>console.log(value))
+  .catch(()=>console.log('error'));
+
+// Api call
+  const abc=fetch('https://jsonplaceholder.typicode.com/todos');
+  abc
+  .then((response)=>response.json())
+  .then((data)=>console.log(data[0]))
+  .catch((error)=>{console.log('error',error)});
+
+const apicall=async()=>{
+    const promise_from_api=await fetch('https://jsonplaceholder.typicode.com/todos');
+    const data =promise_from_api.json();
+    console.log(data);
+}
+apicall();
+
+//ERROR HANDLING
+
+const apiCall=async()=>{ 
+    try{ 
+const promise1=await fetch('https://jsonplaceholder.typicode.com/todos/1');
+const data=await promise1.json();
+console.log(data);
+}
+catch(error){
+    console.log(error);
+}
+ };
+apiCall();
