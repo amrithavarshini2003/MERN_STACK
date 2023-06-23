@@ -1,0 +1,201 @@
+trial.js
+
+//import from userModules.js
+
+import USER_DATA,{
+    addUser,
+    edituser,
+    editMultipleParameterInUser,
+    deleteuser 
+    } from "./usermodules.js";
+addUser({
+    id:2,
+    name:"lalli",
+    age:28,
+    email:"lalli@gamil.com"
+});
+console.log(USER_DATA);
+edituser(2,'name',"lalliedit");
+console.log(USER_DATA);
+deleteuser(1);
+console.log(USER_DATA);
+
+//DOM
+document.body.innerHTML='<div>hello</div>';
+
+document.body.style.backgroundColor="lightblue";
+console.log(document.body.childNodes);
+const allchild=document.body.children;
+allchild[1].style.color="brown";
+
+//to change the color of texts every 3 sec
+setTimeout(
+     () => console.log(allchild[0].style.color="red"),
+     3000
+);
+setTimeout(
+    () => console.log(allchild[1].style.color="yellow"),
+    6000
+);
+setTimeout(
+    () => console.log(allchild[2].style.color="green"),
+    9000
+);
+
+//to overwite a text and change color
+setTimeout(
+    () => {
+     allchild[0].style.color="red";
+     allchild[0].innerText="Red";
+},3000
+);
+setTimeout(
+   () => {
+       allchild[1].style.color="yellow";
+       allchild[1].innerText="Yellow";
+ },6000
+);
+setTimeout(
+   () => {
+       allchild[2].style.color="green";
+       allchild[2].innerText="Green";
+ },9000
+);
+
+let refresh_value=true;
+setInterval(()=>{
+    allchild[0].style.color=(refresh_value?"green":"orange");
+    //allchild[1].style.color=(refresh_value?"orange":"pink");
+    refresh_value=!refresh_value;
+},2000);
+
+//selector
+const tag=document.getElementsByClassName('cse');
+ tag[0].innerText='welcome to sece';
+console.log(tag);
+const id=document.getElementById('unique');
+id.innerText="id based selection";
+const button=document.getElementById('login_button');
+const username=document.getElementById('user');
+const password=document.getElementById('pass');
+const form=document.getElementById('login');
+button.addEventListener('click',(event)=>{
+    console.log('click');  
+})
+form.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    console.log('submit',username.value,password.value);  
+})
+
+--------------------------------------------------------------------------------------
+userModules.js
+//export 
+const USER_DATA=[
+    {
+    id:1,
+    name:"ammu",
+    age:20,
+    email:"ammu@gamil.com"
+    }
+];
+//CRUD
+export const addUser=(new_user)=>{
+    //add a new user in USER_DATA
+    USER_DATA.push(new_user);
+
+}
+export const edituser=(id,key,value)=>{
+    //edit
+    const user_index=USER_DATA.findIndex((user)=>user.id===id);
+    if(user_index!=-1){
+        USER_DATA[user_index][key]=value;
+    }
+    
+}
+export const editMultipleParameterInUser=(id,updatedValue={
+    name:'htg',
+    age:90,
+})=>
+{
+   const user_index=USER_DATA.findIndex((user)=>user.id===id);//find returns -1 if index not found         //to edit multiple attributes or an object
+                                                                                                            
+
+   if(user_index!=-1)
+   {
+    USER_DATA[user_index]={
+        ...USER_DATA[user_index],
+        ...updateValue
+    };
+   }
+}
+
+export const deleteuser=(id)=>{
+    //delete a particular user object from array
+    //delete USER_DATA[id];
+    const user_index=USER_DATA.findIndex((user)=>user.id===id);
+    if(user_index!=-1){
+        USER_DATA.splice(user_index,1);
+    }  
+}
+const nextuser={
+    id:456,
+    name:"devarkonda",
+    age:22,
+    email:"devarkonda@gamil.com"
+
+};
+addUser(nextuser);
+console.log(USER_DATA);
+// edituser(1,'name',"raval");
+// console.log(USER_DATA);
+//editMultipleParameterInUser(456)
+//console.log(USER_DATA);
+// deleteuser(456);
+// console.log(USER_DATA);
+// console.log(USER_DATA);
+export default USER_DATA;
+
+------------------------------------------------------------------------------------------------------------------------
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sece</title>
+    <script type="module" src="trial.js"></script>
+    
+</head>
+<body>
+    <!--<div>hello</div>
+    <div>hello</div>
+    <div>hello</div>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, officiis aliquid animi voluptate deserunt, et reiciendis quisquam rem quo itaque molestiae eos. Odio distinctio, officia architecto debitis voluptates aut fugit inventore, ipsa quasi eveniet animi hic voluptatibus esse atque assumenda.</div>
+    <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, hic accusamus. Quidem incidunt repellendus iusto quaerat facere explicabo nostrum quod iste ducimus atque cumque, cupiditate sed consequuntur dignissimos harum placeat repudiandae quisquam maxime perferendis fugit quos! Corrupti, id itaque! Culpa.</div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, dicta quasi. Repudiandae similique temporibus ipsa consequatur, provident saepe! Hic sit iure optio accusamus unde id voluptate quia excepturi tempore dolore.</div>-->
+    <!--<div>
+        <div>
+            <p></p>
+        </div>
+        <p class="cse"></p>
+        <h1>
+            <p id="unique" Hello students></p>
+        </h1>
+    </div>-->
+    <div>
+        <form id="login" action="">
+            <div>
+                <label for="user">USERNAME</label>
+                <input type="text" name="username"   id="user">
+            </div>
+            <div>
+                <label for="pass">PASSWORD</label>
+                <input type="text" name="password"  id="pass">
+            </div>
+            <button id="login_button">Login</button>
+        </form>
+    </div>
+</body>
+</html>
