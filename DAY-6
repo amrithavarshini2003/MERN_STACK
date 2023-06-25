@@ -1,0 +1,213 @@
+// console.log("hello world");
+// /*OUTPUT:hello world*/
+
+// //ADDITION USING FUNCTION
+// function addition(num1,num2){
+//     return num1+num2;
+// }
+
+// //SUBTRACTION USING FUNCTION
+// function subtraction(num1,num2){
+//     return num1-num2;
+// }
+
+// //MULTIPLICATION USING FUNCTION
+// function multiplication(num1,num2){
+//     return num1*num2;
+// }
+
+// //DIVISION USING FUNCTION
+// function division(num1,num2){
+//     return num1/num2;
+// }
+// console.log(addition(90,10));
+// console.log(subtraction(90,10));
+// console.log(multiplication(90,10));
+// console.log(division(90,10));
+// /*OUTPUT:
+// 100
+// 80
+// 900
+// 9*/
+
+// console.log(process.argv[2]);
+// /*OUTPUT:
+//  C:\Users\amirt\Desktop\NODE.js> node app.js "ammu"
+//  ammu
+// */
+// getting input from the user
+// let num1=parseInt(process.argv[2]);
+// let num2=parseInt(process.argv[3]);
+// console.log(addition(num1,num2));
+// console.log(subtraction(num1,num2));
+// console.log(multiplication(num1,num2));
+// console.log(division(num1,num2));
+// /*OUTPUT:
+//  C:\Users\amirt\Desktop\NODE.js> node app.js 90 10
+// 100
+// 80
+// 900
+// 9
+// */
+
+//  module.exports={addition,subtraction,multiplication,division};
+//  /*OUTPUT:
+//  C:\Users\amirt\Desktop\NODE.js> node app1.js
+// 100
+// 80
+// 900
+// 9
+// 8*/
+
+// //fs module
+// const fs=require('fs');
+// fs.readFile(`${__dirname}/states.txt`,(err,data)=>{
+//     if(err){
+//         console.log("ERROR");
+//     }
+//     else{
+//         console.log(data.toString());
+//     }
+// }
+// )
+// // /*
+// // C:\Users\amirt\Desktop\NODE.js> node app.js
+// // TamilNadu
+// // AndraPradesh
+// // Kerala
+// // Maharastra
+// // */
+
+// // const name="ammu";
+// // console.log(`hell0 ${name}! how r u?`);
+// // console.log(__dirname+"\\states.txt");
+
+// // /*OUTPUT:
+// //  C:\Users\amirt\Desktop\NODE.js> node app.js
+// // hell0 ammu! how r u?
+// // C:\Users\amirt\Desktop\NODE.js\states.txt
+// // TamilNadu
+// // AndraPradesh
+// // Kerala
+// // Maharastra
+// // */
+
+// // //write file
+// const inputData='gili gili bili bili';
+// fs.writeFile(`${__dirname}/file1.txt`,inputData,(err)=>
+// {
+//     if(err){
+//         console.log("ERROR WHILE WRITING");
+//     }
+//     else{
+//         console.log("done write function");
+//     }
+// })
+// /*
+//  C:\Users\amirt\Desktop\NODE.js> node app.js
+// done write function
+// */
+
+// //console.log("hell hello world");
+
+// /*
+//  C:\Users\amirt\Desktop\NODE.js> node app.js
+// hell hello world
+// TamilNadu
+// AndraPradesh
+// Kerala
+// Maharastra
+// done write function*/ 
+
+// //to print readfile->writefile->hello hello world
+// fs.readFile(`${__dirname}/states.txt`,(err,data)=>{
+//     if(err){
+//         console.log("ERROR ");
+//     }
+//     else{
+//         console.log(data.toString());
+//         const inputData='gili gili bili bili';
+//         fs.writeFile(`${__dirname}/file1.txt`,inputData,(err)=>
+//         {
+//         if(err){
+//            console.log("ERROR WHILE WRITING");
+//         }
+//         else{
+//             console.log("done write function");
+//         }
+//         })
+//     }
+//     console.log("hello hello world");
+// })
+
+/*
+TamilNadu
+AndraPradesh
+Kerala
+Maharastra
+hello hello world
+done write function*/
+
+// //promise
+// //read
+// function read(filePath){
+//     return new Promise((resolve,reject)=>
+//     {
+//         fs.readFile(filePath,(err,data)=>
+//         {
+//             if(err) {
+//                 reject('FAILED DURING READ');
+//             }
+//             else{
+//                 resolve(data);
+//             }
+//         })
+//     })
+// }
+// //write
+// function write(filePath,inputData){
+//     return new Promise((resolve,reject)=>
+//     {
+//         fs.writeFile(filePath,inputData,(err)=>
+//         {
+//             if(err) {
+//                 reject('FAILED DURING WRITE');
+//             }
+//             else{
+//                 resolve('write completed');
+//             }
+//         })
+//     })
+// }
+
+// //read->write
+// read(`${__dirname}/states.txt`)
+// .then((data)=>
+// {
+//     console.log(data.toString());
+//     return write(`${__dirname}/test.txt`,data)
+// .then((data)=>{
+//     console.log(data);
+//      })
+// }).catch((err)=>{
+//     console.log(err);
+// })
+// // /*
+// TamilNadu
+// AndraPradesh
+// Kerala
+// Maharastra
+// write completed*/
+
+// const fileOperation=async()=>{
+//     try{
+//        const states=await read(`${__dirname}/states.txt`);
+//         const result=await write(`${__dirname}/test2.txt`,states);
+//         console.log(result);
+//         // console.log(states.toString());
+//         // console.log("HELLO");
+//     }catch(error){
+//         console.log(error);
+//     }
+// }
+// fileOperation();
