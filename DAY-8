@@ -1,0 +1,101 @@
+Express
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BIO-DATA</title>
+    <script>
+        function Biodata() {
+            var biodata = document.getElementById("biodata");
+            biodata.innerHTML = `
+            <h1>BIO_DATA</h1>
+            <ul>
+                <li><span style="color:purple;">NAME</span> : AMRITHA VARSHINI NAGARAJAN </li>
+                <li><span style="color:purple;">AGE</span> : 19 </li>
+                <li><span style="color:purple;">DEPT</span> :CSE </li>
+                <li><span style="color:purple;">COLLEGE</span> : SECE</li>
+                <li><span style="color:purple;">CITY</span> : CBE</li>
+                <li><span style="color:purple;">NATIVE</span>  : SALEM</li>
+            </ul>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <button onclick="Biodata()">Click Me</button>
+    <div id="biodata"></div>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------
+index.js
+// let express = require('express');
+// let path=require('path');
+// let app = express();
+// let port = 3000;
+
+// app.get('/', (req, res) => {
+//     console.log("This method is called!!");
+//     //console.log(res);
+//     //res.send('INSIDE GET');
+//     res.send(`
+//     <h1>BIO_DATA</h1>
+//     <ul>
+//     <li><span style="color:purple;">NAME</span> : AMRITHA VARSHINI NAGARAJAN </li>
+//     <li><span style="color:purple;">AGE</span> : 19 </li>
+//     <li><span style="color:purple;">DEPT</span> :CSE </li>
+//     <li><span style="color:purple;">COLLEGE</span> : SECE</li>
+//     <li><span style="color:purple;">CITY</span> : CBE</li>
+//     <li><span style="color:purple;">NATIVE</span>  : SALEM</li>
+//     </ul>
+    
+//     `);
+
+//   });
+//   //GET
+//   app.get("/",(req,res)=>{
+//     res.send("This Is GET Call!!");
+//   });
+
+//   app.post("/",(req,res)=>{
+//     res.send("This Is POST Call!!");
+//   });
+
+//   app.put("/",(req,res)=>{
+//     res.send("This Is PUT Call!!");
+//   });
+
+//   app.patch("/",(req,res)=>{
+//     res.send("This Is PATCH Call!!");
+//   });
+
+//   app.delete("/",(req,res)=>{
+//     res.send("This Is DELETE Call!!");
+//   });
+
+//next
+let express = require('express');
+let path=require('path');
+let app = express();
+let port = 3000;
+const router=require("./router");
+app.use(router);
+router.get("/",(req,res)=>{
+     res.send("This Is GET Call!!");
+ });
+router.get("/login",(req,res)=>{
+    res.sendFile(path.join(__dirname,"index.html"));
+});
+ 
+app.listen(port, () => {
+  console.log(`Server connected`);
+});
+-----------------------------------------------------------------------------------------------------------------------------------------
+router.js
+let express=require("express");
+let path=require('path');
+const router=express.Router();
+router.get('/login',(req,res)=>{
+    res.sendFile(path.join(__dirname,"index.html"));
+
+})
+module.exports=router;
